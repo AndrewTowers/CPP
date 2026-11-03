@@ -1,22 +1,23 @@
-NAME: phonebook
-CXX: clang++
-FLAGS:  -Wall -Wextra -Werror -std=c++98
-SRCS: phonebook.cpp
-OBJS: $(SRCS:.cpp=.o)
+NAME = phonebook
+CXX = c++
+FLAGS = -Wall -Wextra -Werror -std=c++98
+SRCS = Phonebook.cpp Contact.cpp main.cpp
+OBJS = $(SRCS:.cpp=.o)
+HEADERS = Contact.hpp Phonebook.hpp
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CXX) $(FLAGS) -o $(NAME) $(OBJS)
+	$(CXX) $(FLAGS) -o $(NAME) $(OBJS)
 
-$(OBJS): %.o: %.cpp
-    $(CXX) $(FLAGS) -c $< -o $@
+%.o: %.cpp $(HEADERS)
+	$(CXX) $(FLAGS) -c $< -o $@
 
 clean:
-    rm -f $(OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
-    rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
