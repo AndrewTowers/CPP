@@ -1,15 +1,15 @@
-NAME: megaphone
-CXX: clang++
-FLAGS: -Wall -Wextra -Werror -std=c++98
-SCRS: megaphone.cpp
-OBJS: $(SCRS:.cpp=.o)
+NAME = megaphone
+CXX = c++
+FLAGS = -Wall -Wextra -Werror -std=c++98
+SCRS = Megaphone.cpp
+OBJS = $(SCRS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(FLAGS) -o $(NAME) $(OBJS)
 
-$(OBJS): %.o: %.cpp
+%.o: %.cpp
 	$(CXX) $(FLAGS) -c $< -o $@
 
 clean:
@@ -20,4 +20,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean re
+.PHONY: all clean fclean re

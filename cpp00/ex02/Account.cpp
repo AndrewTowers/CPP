@@ -2,6 +2,7 @@
 #include <iostream>
 #include <ctime>
 #include <iomanip>
+
 using std::cout;
 using std::endl;
 using std::setw;
@@ -92,6 +93,7 @@ Account::~Account(void) {
 	cout << "index:" << _accountIndex
 		<< ";amount:" << _amount
 		<< ";closed" << endl;
+	_nbAccounts--;
 }
 
 void	Account::displayAccountsInfos(void) {

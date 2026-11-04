@@ -1,15 +1,16 @@
 NAME = account
-CXX = g++
+CXX = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = Account.cpp tests.cpp
 OBJS = $(SRCS:.cpp=.o)
+HEADERS = Account.hpp
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CXX) $(FLAGS) -o $(NAME) $(OBJS)
 
-%.o: %.cpp Account.hpp
+%.o: %.cpp $(HEADERS)
 	$(CXX) $(FLAGS) -c $< -o $@
 
 clean:

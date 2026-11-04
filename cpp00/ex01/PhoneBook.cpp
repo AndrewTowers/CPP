@@ -8,7 +8,13 @@ static std::string	getInput(std::string prompt) {
 	std::string input;
 	while (input.empty()) {
 		std::cout << prompt;
-		if (!std::getline(std::cin, input)) return "";
+		if (!std::getline(std::cin, input)) {
+			if (std::cin.eof()) {
+				std::cout << "\nEOF detected. Exiting program." << std::endl;
+				std::exit(0);
+			}
+			return "";
+		}
 	}
 	return input;
 }
@@ -31,7 +37,10 @@ void	PhoneBook::addContact() {
 		return;
 	}
 	contacts[totalContact % 8].setContact(fName, lName, nName, pNumber, dSecret);
-	totalContact++;
+	if (totalContact < 8)
+		totalContact++;
+	else
+		totalContact = 8 + (totalContact % 8) + 1;
 	std::cout << "Contact added successfully!" << std::endl;
 }
 
